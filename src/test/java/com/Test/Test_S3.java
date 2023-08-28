@@ -54,6 +54,8 @@ public class Test_S3 {
 	    WebElement Submit=driver.findElement(By.name("submit"));
 	    Submit.click();
 	    
+	    driver.close();
+	    
 	}
 
 }
