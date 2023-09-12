@@ -1,17 +1,26 @@
 package com.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.bytebuddy.utility.RandomString;
 
 public class Test_S16 {
 
-	public static void main(String[] args) {
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) throws IOException {
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver=new ChromeDriver();
@@ -41,10 +50,38 @@ public class Test_S16 {
 		
 		driver.switchTo().window(ParentID); // switch to Parent window 
 		
+		// full Page ---
+		TakesScreenshot ts= driver;
+		
+		File src=ts.getScreenshotAs(OutputType.FILE);
+		String RM=RandomString.make(3);
+		
+		Date D=new Date();
+		int Date =D.getDate();
+		
+		String currentdate=String.valueOf(Date);
+		File Destn=new File("C:\\Users\\Dell\\eclipse-workspace\\ProjectBatch_21_Automation\\"+currentdate+".png");
+		
+		FileUtils.copyFile(src, Destn);
+		
+		
+		
+		
+		
 		//driver.close(); // current window close 
 		
 		driver.quit(); // current + all open window 
 
+	}
+	
+	public static void CaptureFullPageScreenshot(ChromeDriver driver) throws IOException {
+		
+        TakesScreenshot ts= driver;
+		File src=ts.getScreenshotAs(OutputType.FILE);
+		String ProjectPath=System.getProperty("user.dir");
+		String RM=RandomString.make(5);
+		File Destn=new File(ProjectPath+"\\"+RM+".png");
+		FileUtils.copyFile(src, Destn);
 	}
 
 }
