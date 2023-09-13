@@ -1,5 +1,7 @@
 package com.Test;
 
+import java.io.IOException;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Test_S14 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver=new ChromeDriver();
@@ -19,9 +21,11 @@ public class Test_S14 {
 		//
 
 		WebElement customerId=driver.findElement(By.xpath("//input[@name='cusid']"));
+		Test_S18.elementScreenshot(customerId, "CustomerID");
 		customerId.sendKeys("12345678");
 		
 		WebElement submit=driver.findElement(By.xpath("//input[@name='submit']"));
+		Test_S18.elementScreenshot(submit, "Submit");
 		submit.click();
 		
 		// Alert --- we need to Switch on Alert  --- confirmation alert 
