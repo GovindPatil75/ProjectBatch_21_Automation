@@ -1,20 +1,18 @@
 package com.Test;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import Utility.Library;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Test_S4 {
+public class Test_S20 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		//C:\Users\Dell\eclipse-workspace\ProjectBatch_21_Automation\TestData\Data.xlsx
-		String path=System.getProperty("user.dir"); 
-		System.out.println(path);
-		// C:\Users\Dell\eclipse-workspace\ProjectBatch_21_Automation
-		//Browser Open
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver=new ChromeDriver();
 		driver.get("https://www.facebook.com/");
@@ -22,13 +20,11 @@ public class Test_S4 {
 		
 		// Identify The Element --Locator -Id
 		WebElement Email=driver.findElement(By.id("email"));
-		Email.sendKeys("Test@gmail.com");
+		Email.sendKeys(Library.excelData_String("LoginTest", 0, 0));
 		
 		WebElement Password=driver.findElement(By.id("pass"));
-		Password.sendKeys("12345678");
-		
-		WebElement LoginBtn=driver.findElement(By.name("login"));
-		LoginBtn.click();
+		Password.sendKeys(Library.excelData_String("LoginTest", 0, 1));
+
 	}
 
 }

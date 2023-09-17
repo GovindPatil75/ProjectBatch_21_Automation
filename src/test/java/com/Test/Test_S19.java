@@ -6,24 +6,26 @@ import java.io.IOException;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import Utility.Library;
+
 public class Test_S19 {
 
 	public static void main(String[] args) throws IOException {
 		
-		String Path="C:\\Users\\Dell\\eclipse-workspace\\ProjectBatch_21_Automation\\TestData\\Data.xlsx";
-
-		FileInputStream file =new FileInputStream(Path);
 		
-		XSSFWorkbook wb=new XSSFWorkbook(file);
 		
-		String Data_1=wb.getSheet("LoginTest").getRow(0).getCell(0).getStringCellValue();
+		String Data_0_0=Library.excelData_String("LoginTest", 0, 0); // 0, 0
+		System.out.println(Data_0_0);
 		
-		System.out.println(Data_1);
+		String Data_0_1=Library.excelData_String("LoginTest", 0, 1);
+		System.out.println(Data_0_1);
 		
-		String Data_2=wb.getSheet("LoginTest").getRow(0).getCell(1).getStringCellValue();
+		String Data_0_2=Library.excelData_String("LoginTest", 0, 2);
+		System.out.println(Data_0_2);
 		
-		System.out.println(Data_2);
+		String Data_0_3=Library.excelData_Numeric("LoginTest", 0, 3);
 		
+		System.out.println(Data_0_3);
 	}
 
 }
