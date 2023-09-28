@@ -5,7 +5,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -21,7 +23,12 @@ public class Test_S17 {
 		String ParentID=driver.getWindowHandle(); // parent window id -- string 
 
 		// click here -click
-		driver.findElement(By.xpath("//a[text()='Click Here']")).click();
+		WebElement clickHere=driver.findElement(By.xpath("//a[text()='Click Here']"));
+		
+		//Assert.assertTrue(clickHere.isEnabled() && clickHere.isDisplayed()); // PASS --Fail
+		//clickHere.click();
+		
+		VerifyElement_Click(clickHere);
 
 		Set<String> AllID=driver.getWindowHandles(); // Parent +child Window ID
 		
@@ -45,4 +52,26 @@ public class Test_S17 {
 
 	}
 
+	public static void VerifyElement_SendKeys(WebElement element,String Value) {
+		
+		if(element.isDisplayed() && element.isEnabled()) {
+			element.sendKeys(Value);
+		}else {
+			Assert.assertTrue(false); // Fail
+		}
+		
+	}
+	
+    public static void VerifyElement_Click(WebElement element) {
+		
+		if(element.isDisplayed() && element.isEnabled()) {
+			element.click();
+		}else {
+			Assert.assertTrue(false); // Fail
+		}
+		
+	}
+	
+	
+	
 }
